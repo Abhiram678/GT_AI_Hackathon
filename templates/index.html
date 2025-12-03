@@ -1,1 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Creative Studio</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <main class="panel">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Gemini Nano Banana · Poster + Copy rig</p>
+        <h1>Auto-Creative Engine</h1>
+        <p>Pair a logo + hero product image, describe the campaign, and we will mint on-brand headlines plus finished poster comps ready for A/B testing.</p>
+      </div>
+      <ul class="hero-stats">
+        <li><strong>Ad copy</strong><span>Headline + caption</span></li>
+        <li><strong>Posters</strong><span>Up to 3 visual looks</span></li>
+        <li><strong>Zip</strong><span>Images + txt bundled</span></li>
+      </ul>
+    </section>
 
+    <section class="card steps">
+      <h2>How it works</h2>
+      <ol>
+        <li>Upload your <strong>brand logo</strong> and <strong>product render</strong>.</li>
+        <li>Describe the <strong>product name</strong>, audience, and CTA.</li>
+        <li>Select how many poster looks you need (1–3 today).</li>
+        <li>We call Gemini for copy + posters and return a downloadable ZIP.</li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <form id="creative-form" enctype="multipart/form-data">
+        <div class="fieldset">
+          <h3>Campaign brief</h3>
+          <div class="grid">
+            <label>
+              Product name
+              <input name="brandName" type="text" placeholder="Galaxy Boost" required />
+            </label>
+            <label>
+              Tone / vibe
+              <input name="brandTone" type="text" placeholder="Bold · futuristic · high energy" required />
+            </label>
+          </div>
+          <label>
+            Campaign context
+            <textarea name="productDescription" rows="3" placeholder="Who is the launch for? What problem do we solve?" required></textarea>
+          </label>
+          <label>
+            CTA / success metric
+            <input name="goal" type="text" placeholder="Drive pre-orders, boost downloads, grow waitlist" required />
+          </label>
+          <label>
+            Primary channel
+            <input name="channels" type="text" placeholder="Instagram Stories, LinkedIn feed, Out-of-home" />
+          </label>
+        </div>
+
+        <div class="fieldset">
+          <h3>Assets</h3>
+          <div class="grid">
+            <label class="upload-tile">
+              Brand logo (png/jpg)
+              <input name="brandLogo" type="file" accept="image/*" required />
+              <span>Seen in poster corner</span>
+            </label>
+            <label class="upload-tile">
+              Product image (png/jpg)
+              <input name="productImage" type="file" accept="image/*" required />
+              <span>Used as hero visual</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="fieldset">
+          <h3>Poster variations</h3>
+          <label class="slider-label">
+            Number of looks
+            <input name="variationCount" type="range" min="1" max="3" value="1" oninput="this.nextElementSibling.textContent=this.value" />
+            <span class="range-value">1</span>
+          </label>
+        </div>
+
+        <button type="submit" id="submit-btn">Generate campaign kit</button>
+      </form>
+    </section>
+
+    <section class="card" id="status-card">
+      <h2>Status</h2>
+      <p id="status-text">Waiting for input…</p>
+      <button id="download-btn" hidden>Download creative ZIP</button>
+    </section>
+
+    <section class="card" id="result-card">
+      <h2>Latest kit</h2>
+      <div id="copy-block" class="copy-block" hidden>
+        <p class="meta">Gemini generated headline & caption based on the uploaded images.</p>
+        <h3 id="copy-title">—</h3>
+        <p id="copy-caption"></p>
+      </div>
+      <div id="results" class="gallery"></div>
+    </section>
+  </main>
+
+  <script src="/static/app.js" defer></script>
+</body>
+</html>
